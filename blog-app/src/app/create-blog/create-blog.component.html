@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{data}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="createBlogForm" class="example-form" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input formControlName="title" matInput placeholder="Blog Title" type="text" required>
+    </mat-form-field>
+    <mat-form-field>
+      <textarea formControlName="content" matInput placeholder="Blog Content" required></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="category" matInput placeholder="Category" name="category" required>
+        <mat-option *ngFor="let cat of categories" [value]="cat.value">
+          {{ cat.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button [disabled]="!createBlogForm.valid" mat-raised-button type="submit" color="primary">Save</button>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button class="close" (click)="onNoClick()" color="warn">Cancel</button>
+</div>
